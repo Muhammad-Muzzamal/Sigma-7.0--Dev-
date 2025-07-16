@@ -1,0 +1,49 @@
+what is an internet?
+----------------------
+    interconnected network of computers around the world
+
+Server:
+--------
+    server is the special computer or device which is 24/7 online and provide service or responses to another computer or devices
+
+Client:
+---------
+    Client is the device that request to server for data(data mangta ha) 
+
+IP Address:
+------------
+    IP address is the unique identity of each server or computer.
+    Each computer has its unique IP Address.
+
+What is Web Development?
+--------------------------
+    Building a websites for the internet
+    whenever we earcj any website in the internet it request the server and in response it send the bundle of HTML, CSS, JS and shows in browser. And this cycle is called "Request Response Cycle"
+
+Front-end Technologies
+-----------------------
+    Client side of a website
+
+HTML
+-----
+    The structure of website like a bones of an animal 
+
+CSS
+-----
+    The style of a website like a skin and muscles of an animal.
+
+JavaScript
+-----------
+    The functionality of teh website like motin of animal (eating, breathing, runing etc.)
+
+Frontend: HTML, CSS, JavaScript, Tailwind, Bootstrap
+Backend: Express, NodeJS
+Database: SQL, MongoDB
++React
+
+Prerequisites:
+---------------
+    Laptop / computer
+    Internet Connection
+    Chrome (Browser)
+    Visual Studio Code (Editor)
