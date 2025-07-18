@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .table1, .table1 td, .table1 th{
+            border: 1px solid black;
+        }
+        td, th {
+            border: 1px solid #999;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        /* table{
+            border-spacing: 0.5rem;
+        } */
+        /*table{
+            border-collapse: collapse;
+        } */
+        
+        .table2{
+            border-spacing: 0.5rem;
+        }
+        .table2 td{
+            padding: 0.5rem;
+        }
+        .table2 td:nth-child(1){
+            background: hsl(150, 50%, 50%);
+        }
+        .table2 td:nth-child(2) {
+            background: hsl(160, 60%, 50%);
+        }
+        .table2 td:nth-child(3) {
+            background: hsl(170, 70%, 50%);
+        }
+        .table2 td:nth-child(4) {
+            background: hsl(180, 80%, 50%);
+        }
+        .table2 td:nth-child(5) {
+            background: hsl(190, 90%, 50%);
+        }
+        .table2 td:nth-child(6) {
+            background: hsl(200, 99%, 50%);
+        }
+
+        .table3, .table3 td{
+            border: solid thin;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .table3 caption{
+            padding-bottom: 1rem;
+        }
+        .table3 th, .table3 td{
+            border:solid thin;
+            padding: 0.5rem 2rem;
+        }
+        .table3 td {
+            white-space: nowrap;
+        }
+        .table3 th{
+            font-weight: normal;
+        }
+        .table3 td{
+            border-style: none solid;
+            vertical-align: top;
+        }
+        .table3 th{
+            padding: 0.2em;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .table3 tbody td:first-child::after{
+            content: leader(". ");
+        }
+        body{
+            padding: 1rem;
+        }
+
+        .table4 td, .table4 th{
+            width: 4rem;
+            height: 2rem;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .table4 th{
+            background: lightblue;
+            border-color: white;
+        }
+        .table5{
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .table5 th, .table5 td{
+            padding: 0.25rem; 
+            text-align: left;
+            border: 1px solid #ccc;
+            display: inline;
+        }
+        .table5, .table5 thead, .table5 tfoot, .table5 th, .table5 td, .table5 caption {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="table1">
+        <caption>This is the caption of the table</caption>
+        <thead>
+            <tr>
+                <th>First Header</th>
+                <th>Second Header</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>This is a data cell</td>
+                <td>This is also a data cell</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <tr>
+            <th>name</th>
+            <th>ID</th>
+            <th>Favorite Color</th>
+        </tr>
+        <tr>
+            <td>Jim</td>
+            <td>00001</td>
+            <td>Blue</td>
+        </tr>
+        <tr>
+            <td>Sue</td>
+            <td>00002</td>
+            <td>Red</td>
+        </tr>
+        <tr>
+            <td>Barb</td>
+            <td>00003</td>
+            <td>Green</td>
+        </tr>
+    </table>
+
+    <!-- table 3 -->
+    <h2>This table use the thead and tbody in it</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Favorite Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jim</td>
+                <td>00001</td>
+                <td>Blue</td>
+            </tr>
+            <tr>
+                <td>Sue</td>
+                <td>00002</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <td>Barb</td>
+                <td>00003</td>
+                <td>Green</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Table 3 with footer  -->
+    <h2>Footer of the table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Favorite Color</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Favorite color</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Jim</td>
+                <td>00001</td>
+                <td>Blue</td>
+            </tr>
+            <tr>
+                <td>Sue</td>
+                <td>00002</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <td>Barb</td>
+                <td>00003</td>
+                <td>Green</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- table tags guide -->
+    <h2>Guide to write a table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>&ltth></th>
+                <th>&ltth></th>
+                <th>&ltth></th>
+            </tr>
+            <tr>
+                <td>&lttd></td>
+                <td>&lttd></td>
+                <td>&lttd></td>
+            </tr>
+            <tr>
+                <td>&lttd></td>
+                <td>&lttd></td>
+                <td>&lttd></td>
+            </tr>
+        </thead>
+    </table>
+
+    <!-- table with col spam -->
+    <h2>Table elaborate the colspan and rowspan</h2>
+    <table class="table2">
+        <tr>
+            <td>This</td>
+            <td>Little</td>
+            <td>Piggy</td>
+            <td>Went</td>
+            <td>To</td>
+            <td>Market</td>
+        </tr>
+        <tr>
+            <td colspan="2">This</td>
+            <td>little</td>
+            <td>Piggy</td>
+            <td>Went</td>
+            <td>To</td>
+        </tr>
+        <tr>
+            <td colspan="4">This</td>
+            <td rowspan="3">Little</td>
+            <td>Piggy</td>
+        </tr>
+        <tr>
+            <td rowspan="2">This</td>
+            <td>Little</td>
+            <td>Piggy</td>
+            <td>Went</td>
+            <td>To</td>
+        </tr>
+        <tr>
+            <td>Little</td>
+            <td>Piggy</td>
+            <td>Went</td>
+            <td>To</td>
+        </tr>
+    </table>
+
+    <!-- Practice table  -->
+    <h2>Practice Table</h2>
+    <table class="table3">
+        <caption>Specification values: <b>Steel, Casting, </b>Ann. A.S.T.M. A27-16, Class B,*P max. 0.06; S max.</caption>
+        <thead>
+            <tr>
+                <th rowspan="2">Grade</th>
+                <th rowspan="2">Yeild Point</th>
+                <th colspan="2">Ultimate tensile strength</th>
+                <th rowspan="2">Percent elong 50.8 min or 2 in.</th>
+                <th rowspan="2">Precentage reduct area</th>
+            </tr>
+            <tr>
+                <td>kg/mm2</td>
+                <td>lb/in2</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Hard</td>
+                <td>0.45 ultimate</td>
+                <td>56.2</td>
+                <td>80000</td>
+                <td>15</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>Medium</td>
+                <td>0.45 ultimate</td>
+                <td>49.2</td>
+                <td>70000</td>
+                <td>18</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>Soft</td>
+                <td>0.5 ultimate</td>
+                <td>42.2</td>
+                <td>60000</td>
+                <td>22</td>
+                <td>30</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Two axis Table -->
+    <h2>Two Axis Table</h2>
+    <table class="table4">
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td>4</td>
+            <td>6</td>
+            <td>8</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <th>3</th>
+            <td>6</td>
+            <td>9</td>
+            <td>12</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td>8</td>
+            <td>12</td>
+            <td>16</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <th>5</th>
+            <td>10</td>
+            <td>15</td>
+            <td>20</td>
+            <td>25</td>
+        </tr>
+    </table>
+
+    <!-- un-table a table  -->
+    <h2>Un-table a table</h2>
+    <table class="table5">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Due</th>
+                <th>Web Site</th>
+            </tr>
+            <tr>
+                <td>Smith</td>
+                <td>Jhon</td>
+                <td>jsmith@gmail.com</td>
+                <td>$50.00</td>
+                <td>http://jsmith.com</td>
+            </tr>
+            <tr>
+                <td>Bach</td>
+                <td>Frank</td>
+                <td>fback@yahoo.com</td>
+                <td>$50.00</td>
+                <td>http://frank.com</td>
+            </tr>
+            <tr>
+                <td>Doe</td>
+                <td>Jason</td>
+                <td>jdeo@hotmail.com</td>
+                <td>$100.00</td>
+                <td>http://jdeo.com</td>
+            </tr>
+            <tr>
+                <td>Conway</td>
+                <td>Tim</td>
+                <td>tconway@earthlink.com</td>
+                <td>$50.00</td>
+                <td>http://timconway.com</td>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>

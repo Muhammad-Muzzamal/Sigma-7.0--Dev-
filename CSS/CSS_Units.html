@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Units</title>
+    <style>
+        .box {
+  background-color: lightblue;
+  border: 5px solid darkblue;
+  padding: 10px;
+  margin: 1em 0;
+}
+
+.wrapper {
+  font-size: 1em;
+}
+
+.px {
+  width: 200px;
+}
+
+.vw {
+  width: 10vw;
+}
+
+.em {
+  width: 10em;
+}
+html {
+  font-size: 16px;
+}
+
+.ems li {
+  font-size: 1.3em;
+}
+
+.rems li {
+  font-size: 1.3rem;
+}
+    </style>
+  </head>
+  <body>
+    <h1>CSS Units</h1>
+    <section class="absolute-unit">
+      <h2>Absolute Units:</h2>
+      <p>
+        Absolute units are those that are always the same in any context.
+        <b>px</b> is an absolute unit because the size of a pixel doesn't change
+        relative to anything else on the page. In fact, px is the only absolute
+        unit you should be using for web projects. The rest of them make more
+        sense in a print setting because they are related to physical units such
+        as in (inch) and cm (centimeter)
+      </p>
+    </section>
+
+    <!-- Relative Units -->
+    <section class="relative-unit">
+      <h2>Relative Units:</h2>
+      <p>
+        Relative units are units that can change based on their context. There
+        are several of them that you are likely to encounter and want to use.
+      </p>
+      <ul>
+        <li>
+          <h3>em and rem</h3>
+          <p>
+            <b>em</b> and <b>rem</b> both refer to a font size, though they are
+            often used to define other sizes in CSS. You'll see both of them
+            often so we're going to explain both, but as a rule-of-thumb, prefer
+            <b>rem</b>.
+          </p>
+          <p>
+            <b>1em</b> is the <b>font-size</b> of an element (or the element's
+            parent if you're using it to set <b>font-size</b> ). So, for
+            example, if an element's font-size is <b>16px</b>, then setting its
+            width to <b>4em</b> would make its width <b>64px (16 * 4 == 64)</b>.
+          </p>
+          <p>
+            <b>1rem</b> is the font-size of the root element (either :root or html).
+            The math works the same with rem as it did with em, but without the
+            added complexity of keeping track of the parent’s font size. Relying
+            on em could mean that a particular size could change if the context
+            changes, which is very likely not the behavior you want.
+          </p>
+          <p>
+            Using a relative size like rem to define font sizes across your website is recommended. Many browsers allow users to change the base font-size to increase readability. If at all possible, it is advisable to respect a user’s wishes regarding font size. You’ll learn more about this from the reading assignments.
+          </p>
+        </li>
+        <li>
+            <h3>Viewport units</h3>
+            <p>The units vh and vw relate to the size of the viewport. Specifically, 1vh is equal to 1% of the viewport height and 1vw is equal to 1% of the viewport width. These can be useful any time you want something to be sized relative to the viewport, examples including full-height heroes, full-screen app-like interfaces.</p>
+        </li>
+      </ul>
+      <div class="wrapper">
+  <div class="box px">I am 200px wide</div>
+  <div class="box vw">I am 10vw wide</div>
+  <div class="box em">I am 10em wide</div>
+</div>
+
+<ul class="ems">
+  <li>One</li>
+  <li>Two</li>
+  <li>
+    Three
+    <ul>
+      <li>Three A</li>
+      <li>
+        Three B
+        <ul>
+          <li>Three B 2</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ul class="rems">
+  <li>One</li>
+  <li>Two</li>
+  <li>
+    Three
+    <ul>
+      <li>Three A</li>
+      <li>
+        Three B
+        <ul>
+          <li>Three B 2</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+    </section>
+  </body>
+</html>
