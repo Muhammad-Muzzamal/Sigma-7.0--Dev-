@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tables</title>
+    <style>
+      .table1 th,
+      .table1 td {
+        border: 1px solid black;
+      }
+      .table1 {
+        border-collapse: collapse;
+      }
+      .table2 {
+        border: 1px solid black;
+      }
+      .table2 th,
+      .table2 td {
+        border: 1px solid black;
+      }
+      .table2 th {
+        background-color: rgb(43, 4, 4);
+        color: white;
+      }
+      .table3{
+        border:1px solid black;
+      }
+      .table3 th, .table3 td{
+        border:1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tables in HTML</h1>
+    <p>Table is the combination of rows and columns</p>
+    <ul>
+      <li><b>Rows:</b> Horizontal Lines</li>
+      <li><b>Columns:</b> Vertical Lines</li>
+    </ul>
+    <table class="table1">
+      <caption>
+        Table Caption
+      </caption>
+      <tr>
+        <th>Header 1</th>
+        <th>Header 2</th>
+      </tr>
+      <tr>
+        <td>Data 1</td>
+        <td>Data 2</td>
+      </tr>
+    </table>
+    <br />
+    <hr />
+    <table class="table2">
+      <cpation>Food Menu</cpation>
+      <thead>
+        <tr>
+          <th>Items</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frooti</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Samosa</td>
+          <td>12</td>
+        </tr>
+        <tr>
+          <td>Chips</td>
+          <td>20</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Sum:</td>
+          <td>42</td>
+        </tr>
+      </tfoot>
+    </table>
+    <hr />
+    <table class="table3">
+      <caption>Food Items</caption>
+      <thead>
+        <tr>
+            <th rowspan="2">Items</th>
+            <th colspan="2">Price</th>
+        </tr>
+        <tr>
+            <th>INR</th>
+            <th>USD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>Frooti</td>
+            <td>10</td>
+            <td>0.14</td>
+        </tr>
+        <tr>
+            <td>Samosa</td>
+            <td>12</td>
+            <td>0.17</td>
+        </tr>
+        <tr>
+            <td>Chips</td>
+            <td>20</td>
+            <td>0.28</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
