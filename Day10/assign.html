@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment</title>
+    <style>
+      #div {
+        height: 150px;
+        width: 300px;
+        background: gray;
+        border: 5px dotted black;
+        margin-top: 20px;
+        margin-right: 1em;
+        margin-bottom: 40px;
+        margin-left: 2em;
+        padding: 1em;
+      }
+      .sameLine {
+        height: 100px;
+        width: 100px;
+        background: pink;
+        border: 2px solid black;
+        border-radius: 100px;
+        display: inline-block;
+      }
+      .ul .li {
+        display: inline;
+        margin: 1em;
+      }
+      #alpha {
+        height: 200px;
+        width: 200px;
+        background: rgba(255, 0, 0, 0.5);
+      }
+      #opacity {
+        height: 200px;
+        width: 200px;
+        background: green;
+        opacity: 1;
+      }
+      #transition{
+        height: 200px;
+        width: 200px;
+        background: yellowgreen;
+        transition: 5s steps(4);
+      }
+      #transition:hover{
+        background: pink;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div"></div>
+
+    <div class="sameLine"></div>
+    <div class="sameLine"></div>
+    <div class="sameLine"></div>
+    <hr />
+    <ul class="ul">
+      <li class="li">HTML</li>
+      <li class="li">CSS</li>
+      <li class="li">JavaScript</li>
+      <li class="li">NodeJs</li>
+      <li class="li">ReactJS</li>
+      <li class="li">SQL</li>
+      <li class="li">MongoDB</li>
+      <li class="li">Java</li>
+      <li class="li">C++</li>
+      <li class="li">C</li>
+      <li class="li">Python</li>
+    </ul>
+    <hr />
+    <h1>Alpha</h1>
+    <div id="alpha"></div>
+    <hr />
+    <h1>Opacity</h1>
+    <div id="opacity">Opacity</div>
+
+    <hr />
+    <h1>Trasition</h1>
+    <div id="transition">Hover me</div>
+  </body>
+</html>

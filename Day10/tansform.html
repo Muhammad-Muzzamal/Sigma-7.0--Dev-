@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transform</title>
+    <style>
+      .outer {
+        border: 2px solid black;
+        height: 50vh;
+        width: 50vh;
+        background: rgb(153, 205, 50);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .inner {
+        border: 2px dotted black;
+        height: 50%;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: rgba(255, 0, 0, 0.397);
+        font-size: 2em;
+        transition: 2s ease-in-out;
+      }
+      .inner:hover {
+        background: rgba(255, 255, 255, 0.404);
+        border-radius: 100% 0% 100% 100%;
+        transform: scale(4);
+      }
+      @keyframes
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">I am inner Container</div>
+    </div>
+  </body>
+</html>

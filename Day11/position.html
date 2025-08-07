@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Position</title>
+    <style>
+      #static {
+        width: 200px;
+        height: 200px;
+        background-color: lightblue;
+        position: static; /* Default positioning */
+        border: 2px solid blue;
+        left: 50px; /* This will not affect the element */
+        top: 50px; /* This will not affect the element */
+      }
+      #relative {
+        width: 200px;
+        height: 200px;
+        background-color: lightgreen;
+        position: relative; /* Relative positioning */
+        left: 50px; /* Moves the element 50px to the right */
+        top: 100px; /* Moves the element 50px down */
+        border: 2px solid green;
+      }
+      #absolute {
+        width: 200px;
+        height: 200px;
+        background-color: lightcoral;
+        position: absolute; /* Absolute positioning */
+        left: 100px; /* Moves the element 100px from the left of the nearest positioned ancestor */
+        top: 150px; /* Moves the element 150px down */
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Positioning Elements</h1>
+    <p>This is a simple demonstration of CSS positioning.</p>
+    <section>
+      <div id="static"></div>
+      <p>
+        The above box is positioned statically. The 'left' and 'top' properties
+        do not apply.
+      </p>
+      <p>
+        To see the effect of different positioning, you can change the
+        'position'
+      </p>
+    </section>
+
+    <hr />
+    <section>
+      <div id="relative"></div>
+        <p>
+            The above box is positioned relatively. The 'left' and 'top' properties
+            move the element from its normal position.
+        </p>
+    </section>
+
+    <hr />
+    <section>
+
+        <div id="absolute"></div>
+      <p>
+        You can experiment with other positioning values like <code>absolute</code>,
+        <code>fixed</code>, and <code>sticky</code> to see how they affect the layout.
+      </p>
+  </body>
+</html>

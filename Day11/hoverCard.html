@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hover Card</title>
+    <style>
+      .card {
+        width: 200px;
+        height: 250px;
+        border: 2px solid black;
+        margin: 10px;
+        display: inline-block;
+        border-radius: 5px;
+        box-shadow: 2px 4px 16px rgb(0, 0, 0);
+        transition: 0.3s ease;
+      }
+      .desc {
+        padding: 10px;
+      }
+      img {
+        width: 100%;
+      }
+      .card:hover {
+        box-shadow: 2px 4px 8px black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="bgPic.jpg" alt="card image" />
+      <div class="desc">
+        <h3>Rahul Kumar</h3>
+        <p>Data Analyst</p>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="bgPic.jpg" alt="card image" />
+      <div class="desc">
+        <h3>Neha Sharma</h3>
+        <p>Web Developer</p>
+      </div>
+    </div>
+  </body>
+</html>

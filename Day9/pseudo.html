@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pseudo Classes</title>
+    <style>
+        .btn{
+            width: 30vw;
+            height: 10vh;
+            border-radius:30px;
+            border: none;
+            background: gray;
+            color: white;
+            font-weight: bolder;
+            font-size: larger;
+        }
+        /* Hover pseudo class */
+        .btn:hover{
+            background: rgb(112, 111, 111);
+        }
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn1:active{
+            background: rgb(78, 77, 77);
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="">
+        <h1>Hover: &nbsp; &nbsp; &nbsp;</h1>
+      <button class="btn">Hover me</button>
+    </div>
+    <div class="">
+        <h1>Active: &nbsp; &nbsp; &nbsp;</h1>
+      <button class="btn btn1">Hover me</button>
+    </div>
+  </body>
+</html>

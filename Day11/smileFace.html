@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smile Face</title>
+    <!-- {-- CSS for smile face --} -->
+    <style>
+        #outer{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin: 50px auto;
+            background-color: yellow;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+        #eyes{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 50px;
+        }
+        .eye{
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+        }
+        #left-eye{
+            left: 10px;
+            top: 10px;
+        }
+        #right-eye{
+            right: 10px;
+            top: 10px;
+        }
+        #mouth{
+            position: absolute;
+            bottom: 30px;
+            left: 50px;
+            width: 100px;
+            height: 20px;
+            border: 5px solid black;
+            border-radius: 0 0 50px 50px; /* Creates a smile shape */
+            background-color: transparent;
+        }
+        
+
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div id="eyes">
+        <div class="eye" id="left-eye"></div>
+        <div class="eye" id="right-eye"></div>
+      </div>
+      <div id="mouth"></div>
+    </div>
+  </body>
+</html>
