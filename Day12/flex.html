@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Box</title>
+    <style>
+        .flex-container {
+            display: flex;
+            border: 2px solid black;
+            justify-content: space-around; /* Distributes items evenly */           
+            align-items: center; /* Centers items vertically */
+            padding:10px;
+        }
+        .flex-item {
+            height: 100px;
+            width: 100px;
+            background-color: lightblue;
+            border: 2px solid blue;
+        }
+
+        /* Example 2 Flex Box */
+        .flex-container1{
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
+            justify-content: space-between; /* Distributes items evenly with space between */
+            align-items: center; /* Centers items vertically */
+            border: 2px solid black;
+            padding: 10px;
+            /*flex-direction: column-reverse;*/ /* Reverses the order of items in the column */
+        }
+        .flex-item1{
+            height: 100px;
+            width: 100px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Flex Box</h1>
+    <hr/>
+
+    <!-- Flex box example -->
+    <div class="flex-container">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+
+    <hr/>
+    <!-- Example of flex box  -->
+     <h1>Text Wrap and Alignment</h1>
+    <div class="flex-container1">
+        <div class="flex-item1" style="background-color: red;">Red</div>
+        <div class="flex-item1" style="background-color: orange;">Orange</div>
+        <div class="flex-item1" style="background-color: yellow;">Yellow</div>
+        <div class="flex-item1" style="background-color: green;">Green</div>
+        <div class="flex-item1" style="background-color: blue;">Blue</div>
+        <div class="flex-item1" style="background-color: indigo;">Indigo</div>
+        <div class="flex-item1" style="background-color: violet;">Violet</div>
+        <div class="flex-item1" style="background-color: pink;">Pink</div>
+        <div class="flex-item1" style="background-color: cyan;">Cyan</div>
+        <div class="flex-item1" style="background-color: lime;">Lime</div>
+</body>
+</html>
