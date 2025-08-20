@@ -28,5 +28,8 @@ console.log(str4.slice(-1)); // reverve index strart fro the last of the string
 
 // Replace Method
 
+let str5 = "IBuild Software";
+console.log(str5.replace('B', 'b'));
+console.log(str5.replace(' ', ''));
 
 
