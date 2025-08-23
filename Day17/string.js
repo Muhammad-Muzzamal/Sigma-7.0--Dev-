@@ -7,29 +7,29 @@ console.log(
   `trim() function remove white spaces from he sides not inside of words\n 
   ${str2.trim()}`
 );
-
 let str3 = "IloveCoding";
 console.log(str3.indexOf(""));
-
 // Method chaining
-
 console.log(str2.trim().toUpperCase());
 console.log(str1.toUpperCase().indexOf("W"));
-
-
 // Slice
-// It returns the part of the orgnal string 
-
-let str4 = 'ILovePakistan';
+// It returns the part of the orgnal string
+let str4 = "ILovePakistan";
 console.log(str4.slice(1)); // startind index = 1, ending index = length
 console.log(str4.slice(1, 5));
-console.log(str4.slice(-1)); // reverve index strart fro the last of the string 
-
-
+console.log(str4.slice(-1)); // reverve index strart fro the last of the string
 // Replace Method
-
 let str5 = "IBuild Software";
-console.log(str5.replace('B', 'b'));
-console.log(str5.replace(' ', ''));
+console.log(str5.replace("B", "b"));
+console.log(str5.replace(" ", ""));
 
+// Assignment
+let msg = "Help!";
+console.log(msg.trim().toUpperCase());
 
+// Question 2
+let name = "ApnaCollege";
+console.log(name.slice(4, 9));
+console.log(name.indexOf("na"));
+console.log(name.replace("Apna", "Our"));
+console.log(name.slice(name.indexOf("College")).replace("l", "t"));

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag Input Example</title>
+  <style>
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: text;
+    }
+    .tag {
+      background: #007bff;
+      color: white;
+      padding: 5px 10px;
+      margin: 3px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+    }
+    .tag span {
+      margin-left: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .tag-input {
+      border: none;
+      flex: 1;
+      min-width: 120px;
+      outline: none;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <form action="/save-tags" method="POST">
+    @csrf
+    <div class="tag-container" id="tag-container">
+      <input type="text" id="tag-input" class="tag-input" placeholder="Type and press Enter">
+    </div>
+    <input type="hidden" name="tags" id="tags-hidden">
+    <button type="submit">Save</button>
+  </form>
+
+  <script>
+    const tagContainer = document.getElementById('tag-container');
+    const tagInput = document.getElementById('tag-input');
+    const hiddenInput = document.getElementById('tags-hidden');
+
+    let tags = [];
+
+    function updateHiddenInput() {
+      hiddenInput.value = JSON.stringify(tags); // save as JSON array
+    }
+
+    function addTag(tag) {
+      tag = tag.trim();
+      if (tag && !tags.includes(tag)) {
+        tags.push(tag);
+
+        let tagEl = document.createElement('div');
+        tagEl.classList.add('tag');
+        tagEl.innerHTML = `${tag} <span onclick="removeTag('${tag}')">&times;</span>`;
+        tagContainer.insertBefore(tagEl, tagInput);
+        updateHiddenInput();
+      }
+      tagInput.value = '';
+    }
+
+    function removeTag(tag) {
+      tags = tags.filter(t => t !== tag);
+      document.querySelectorAll('.tag').forEach(el => {
+        if (el.textContent.trim() === tag + " ×") el.remove();
+      });
+      updateHiddenInput();
+    }
+
+    tagInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        addTag(tagInput.value);
+      }
+    });
+  </script>
+</body>
+</html>
