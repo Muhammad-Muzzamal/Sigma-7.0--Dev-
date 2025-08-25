@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess Game</title>
+  </head>
+  <body>
+    <script>
+      let name = "Muzzamal".toLowerCase();
+      let guess = prompt("Guess the name").toLowerCase();
+      while (guess != name && guess != "quit") {
+        guess = prompt("Wrong Guess try Again");
+      }
+      if (guess == name) {
+        console.log("Congrats!!");
+      } else {
+        console.log("quit");
+      }
+    </script>
+  </body>
+</html>

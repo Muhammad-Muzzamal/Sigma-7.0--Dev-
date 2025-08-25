@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>toDo App</title>
+  </head>
+  <body>
+    <h1>To Do App</h1>
+    <h3>Enter "list" to show all the tasks</h3>
+    <h3>Enter "add" to show all the tasks</h3>
+    <h3>Enter "delete" to show all the tasks</h3>
+    <h3>Enter "quit" to show all the tasks</h3>
+
+    <script>
+      let todo = [];
+      let req = prompt("Please Enter your request");
+
+      while (true) {
+        if (req == "quit") {
+          console.log("quiting app");
+          break;
+        }
+
+        if (req == "list") {
+          console.log("-----------------------");
+          for (task of todo) {
+            console.log(task);
+          }
+          console.log("-----------------------");
+        } else if (req == "add") {
+          let task = prompt("Please enter your task you want to add");
+          todo.push(task);
+          console.log("Task Added");
+        }
+        req = prompt("Please Enter your request");
+      }
+    </script>
+  </body>
+</html>

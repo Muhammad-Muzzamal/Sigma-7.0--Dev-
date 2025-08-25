@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nested Array</title>
+  </head>
+  <body>
+    <script>
+      let heros = [
+        ["ironman", "spiderman", "thor"],
+        ["superman", "wonder Woman", "flash"],
+      ];
+
+      for (let i = 0; i < heros.length; i++) {
+        console.log(`List # ${i}`);
+        for (let j = 0; j < heros[i].length; j++) {
+          console.log(`${j} => ${heros[i][j]}`);
+        }
+      }
+    </script>
+  </body>
+</html>
