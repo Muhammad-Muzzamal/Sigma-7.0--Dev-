@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice a Roll</title>
+    <style>
+        body{
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            color: wheat;
+            flex-direction: column;
+        }
+        h1{
+            font-size: 5rem;
+        }
+        #play{
+            height: 40px;
+            width: 100px;
+            border-radius: 10px;
+            border: none;
+        }
+        #result{
+            position: relative;
+            top: 40px;
+        }
+    </style>
+  </head>
+  <body class="">
+    <h1>Roll a dice</h1>
+    <button id="play">Play</button>
+    <h2 id="result"></h2>
+    <script>
+      let result = document.querySelector("#result");
+      let button = document.querySelector("#play");
+
+      button.addEventListener(
+        "click",
+        (rollDice = () => {
+          let random = Math.floor(Math.random() * 6) + 1;
+          result.innerText = random;
+          return random;
+        })
+      );
+    </script>
+  </body>
+</html>
