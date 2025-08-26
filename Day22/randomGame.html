@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Number Game</title>
+  </head>
+  <body>
+    <h1>Random Number Guessing Game</h1>
+    <h1 id="result"></h1>
+
+    <script>
+      let result = document.querySelector("#result");
+      let maxNumber = prompt("Enter the maximum Number");
+      const randomNumber = Math.floor(Math.random() * maxNumber) + 1;
+
+      let ans = prompt("Guess the number");
+
+      while (true) {
+        if (ans.toLowerCase() === "quit") {
+          result.innerText = "You quit the game!";
+          break;
+        }
+
+        // convert ans to number
+        let guess = Number(ans);
+
+        if (guess === randomNumber) {
+          result.innerText = "🎉 Congratulation! Your guess is right";
+          break;
+        } else if (guess > randomNumber) {
+          ans = prompt("Please enter a smaller number");
+        } else {
+          ans = prompt("Please enter a larger number");
+        }
+      }
+    </script>
+  </body>
+</html>
