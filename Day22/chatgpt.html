@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Muhammad Muzammil — Web Developer</title>
+
+  <!-- Tailwind CDN with custom theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              blue: '#0ff0fc',
+              pink: '#ff2d95',
+              purple: '#8a2be2',
+              green: '#00ff66',
+              yellow: '#ffdd00'
+            },
+            darkbg: '#06060a',
+            card: 'rgba(255,255,255,0.06)'
+          },
+          fontFamily: {
+            display: ['Orbitron', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          },
+          boxShadow: {
+            'neon-sm': '0 4px 18px rgba(0,240,252,0.08)',
+            'neon-lg': '0 10px 40px rgba(138,43,226,0.12)'
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts + icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    /* Global & Background */
+    :root { color-scheme: dark; }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1000px 600px at 10% 10%, rgba(14,10,40,0.6), transparent 10%),
+                  radial-gradient(800px 500px at 90% 90%, rgba(44,4,70,0.5), transparent 10%),
+                  linear-gradient(180deg,#05050a 0%, #0b0b12 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior: smooth;
+    }
+
+    /* Glass card base */
+    .glass {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      backdrop-filter: blur(8px) saturate(1.1);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 6px 24px rgba(2,6,23,0.6);
+    }
+
+    /* Neon text outlines */
+    .neon-text {
+      background: linear-gradient(90deg, theme('colors.neon.pink'), theme('colors.neon.blue'));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 6px 24px rgba(0,255,255,0.06);
+    }
+
+    /* Custom small cursor follower */
+    .cursor-follower {
+      position: fixed;
+      top: 0; left: 0;
+      width: 12px; height: 12px;
+      border-radius: 9999px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+      box-shadow: 0 0 12px rgba(0,255,252,0.85), 0 0 24px rgba(255,45,149,0.06);
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
+      mix-blend-mode: screen;
+      transition: width .18s ease, height .18s ease, opacity .2s ease;
+    }
+
+    /* Larger cursor when hovering interactive elements */
+    .cursor-follower.big {
+      width: 28px; height: 28px;
+      box-shadow: 0 0 26px rgba(0,255,252,0.85), 0 0 48px rgba(255,45,149,0.12);
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.06));
+    }
+
+    /* Typing caret */
+    .typing { font-weight:700; color: #9ef5c0; }
+    .caret {
+      display:inline-block; width:2px; height:1.1em;
+      background: linear-gradient(180deg, theme('colors.neon.green'), #c8ffd8);
+      margin-left:6px; vertical-align:middle;
+      animation: blink 1s steps(2, start) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0 } }
+
+    /* Hero animated background subtle grid */
+    .grid-overlay {
+      position:absolute; inset:0; opacity:0.06; pointer-events:none;
+      background-image:
+        linear-gradient(0deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mix-blend-mode: screen;
+      filter: blur(0.2px);
+    }
+
+    /* project overlay */
+    .project-overlay { background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6)); }
+
+    /* small tweaks for accessibility */
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 2px solid rgba(0,255,252,0.18);
+      outline-offset: 2px;
+    }
+
+    /* back to top */
+    #backToTop {
+      position: fixed; right: 24px; bottom: 28px;
+      width:48px; height:48px; border-radius:12px;
+      display:grid; place-items:center;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.06);
+      z-index: 60;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Cursor follower -->
+  <div id="cursor" class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40">
+    <nav class="glass max-w-6xl mx-auto my-4 px-6 py-3 rounded-2xl flex items-center justify-between shadow-neon-lg">
+      <div class="flex items-center gap-4">
+        <div class="rounded-full w-11 h-11 bg-gradient-to-tr from-neon-pink to-neon-blue p-[2px]">
+          <div class="rounded-full w-full h-full bg-[linear-gradient(180deg,#0b0b12,#0b0b12)] flex items-center justify-center text-white font-bold">MM</div>
+        </div>
+        <div>
+          <div class="text-white font-semibold">Muhammad Muzammil</div>
+          <div class="text-xs text-slate-300">Frontend Developer</div>
+        </div>
+      </div>
+
+      <ul class="hidden md:flex items-center gap-6 text-sm">
+        <li><a class="hover:scale-105 transition" href="#home">Home</a></li>
+        <li><a class="hover:scale-105 transition" href="#about">About</a></li>
+        <li><a class="hover:scale-105 transition" href="#projects">Projects</a></li>
+        <li><a class="hover:scale-105 transition" href="#skills">Skills</a></li>
+        <li><a class="hover:scale-105 transition" href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="px-4 py-2 text-sm rounded-xl bg-gradient-to-r from-neon-pink to-neon-blue shadow-neon-sm text-black font-semibold hover:scale-105 transition transform">Hire Me</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="relative overflow-hidden">
+    <div class="grid-overlay"></div>
+    <section class="max-w-6xl mx-auto px-6 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-12">
+      <!-- left: text -->
+      <div class="lg:w-1/2 space-y-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+          <span class="block neon-text font-display">Transforming Ideas</span>
+          <span class="block text-3xl md:text-4xl text-slate-200">into <span class="text-transparent neon-text">Digital Reality</span></span>
+        </h1>
+
+        <div class="text-lg md:text-xl text-slate-300">
+          <span class="typing" id="typingText"></span><span class="caret" aria-hidden="true"></span>
+        </div>
+
+        <p class="max-w-xl text-slate-300">
+          I build modern, responsive, and accessible web apps with delightful UI/UX — focused on performance, clarity and conversion.
+        </p>
+
+        <div class="flex gap-4">
+          <a href="#contact" class="glass inline-flex items-center gap-3 px-5 py-3 rounded-2xl font-semibold hover:scale-105 transform transition">
+            <i class="fas fa-paper-plane text-neon-pink"></i>
+            <span>Contact Me</span>
+          </a>
+          <a href="#" class="inline-flex items-center gap-3 px-5 py-3 rounded-2xl font-semibold border border-transparent bg-gradient-to-r from-neon-blue to-neon-pink text-black shadow-neon-sm hover:opacity-95 transition">Download Resume</a>
+        </div>
+
+        <div class="flex gap-3 pt-4 items-center text-sm text-slate-300">
+          <div class="flex items-center gap-2">
+            <i class="fab fa-github"></i><a href="#" class="underline">github.com/yourname</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fab fa-linkedin"></i><a href="#" class="underline">linkedin.com/in/yourname</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: profile + stats -->
+      <div class="lg:w-1/2 flex justify-center">
+        <div class="glass rounded-3xl p-6 w-full max-w-md relative overflow-hidden">
+          <div class="absolute -top-12 -left-10 w-44 h-44 rounded-full bg-gradient-to-tr from-neon-pink to-neon-blue opacity-10 blur-3xl pointer-events-none"></div>
+
+          <div class="flex flex-col items-center gap-4">
+            <div class="w-36 h-36 rounded-full p-1 bg-gradient-to-tr from-neon-pink to-neon-blue">
+              <img alt="profile" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=60" class="rounded-full w-full h-full object-cover border-2 border-white/5"/>
+            </div>
+
+            <div class="text-center">
+              <div class="text-xl font-semibold">Muhammad Muzammil</div>
+              <div class="text-sm text-slate-300">Frontend Developer • UI/UX • React & Tailwind</div>
+            </div>
+
+            <div class="w-full space-y-3 mt-3">
+              <div>
+                <div class="flex justify-between text-xs text-slate-300 mb-1">HTML <span id="htmlPct">0%</span></div>
+                <div class="w-full bg-white/6 h-2 rounded-full overflow-hidden">
+                  <div data-target="95" class="skill-bar bg-gradient-to-r from-neon-blue to-neon-pink h-2 w-0"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs text-slate-300 mb-1">CSS <span id="cssPct">0%</span></div>
+                <div class="w-full bg-white/6 h-2 rounded-full overflow-hidden">
+                  <div data-target="90" class="skill-bar bg-gradient-to-r from-neon-pink to-neon-purple h-2 w-0"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs text-slate-300 mb-1">JavaScript <span id="jsPct">0%</span></div>
+                <div class="w-full bg-white/6 h-2 rounded-full overflow-hidden">
+                  <div data-target="85" class="skill-bar bg-gradient-to-r from-neon-green to-neon-blue h-2 w-0"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full grid grid-cols-2 gap-3 mt-4">
+              <div class="glass p-3 rounded-xl text-center">
+                <div class="text-2xl font-bold neon-text">50+</div>
+                <div class="text-xs text-slate-300">Projects</div>
+              </div>
+              <div class="glass p-3 rounded-xl text-center">
+                <div class="text-2xl font-bold neon-text">35+</div>
+                <div class="text-xs text-slate-300">Clients</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-display neon-text text-center mb-8">About Me</h2>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <div class="glass rounded-2xl p-6">
+        <h3 class="text-xl font-semibold mb-2">Who I am</h3>
+        <p class="text-slate-300">I’m a frontend developer focused on building performant user interfaces with attention to detail and strong UX. I bring designs to life with Tailwind, JS and accessibility-first thinking.</p>
+
+        <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-slate-300">
+          <li>✅ Responsive UI</li>
+          <li>✅ Accessibility</li>
+          <li>✅ Performance-minded</li>
+          <li>✅ Clean code</li>
+        </ul>
+      </div>
+
+      <div class="glass rounded-2xl p-6">
+        <h3 class="text-xl font-semibold mb-2">Tooling</h3>
+        <div class="flex flex-wrap gap-3 mt-3">
+          <!-- simple icon chips -->
+          <span class="px-3 py-2 rounded-md glass text-sm">HTML5</span>
+          <span class="px-3 py-2 rounded-md glass text-sm">CSS3</span>
+          <span class="px-3 py-2 rounded-md glass text-sm">JavaScript</span>
+          <span class="px-3 py-2 rounded-md glass text-sm">Tailwind</span>
+          <span class="px-3 py-2 rounded-md glass text-sm">React</span>
+          <span class="px-3 py-2 rounded-md glass text-sm">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-display neon-text text-center mb-8">Selected Projects</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- project card -->
+      <article class="group relative rounded-2xl overflow-hidden glass p-0">
+        <div class="h-48 bg-gradient-to-tr from-slate-900 to-slate-800 flex items-center justify-center">
+          <div class="text-slate-300">Project visual</div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold">Neon E-Commerce</h3>
+          <p class="text-xs text-slate-300 mt-1">React • Tailwind • Node</p>
+        </div>
+
+        <!-- overlay on hover -->
+        <div class="absolute inset-0 flex items-center justify-center project-overlay opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="text-center px-6">
+            <p class="text-sm text-slate-200 mb-3">Futuristic shopping UI with 3D product view and cart interactions.</p>
+            <div class="flex gap-3 justify-center">
+              <a class="px-3 py-2 rounded-lg bg-gradient-to-r from-neon-blue to-neon-pink text-black font-semibold" href="#">Live</a>
+              <a class="px-3 py-2 rounded-lg glass border border-white/6" href="#">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- duplicate cards (replace content) -->
+      <article class="group relative rounded-2xl overflow-hidden glass p-0">
+        <div class="h-48 bg-gradient-to-tr from-slate-900 to-slate-800 flex items-center justify-center">
+          <div class="text-slate-300">Dashboard visual</div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold">Cyberpunk Dashboard</h3>
+          <p class="text-xs text-slate-300 mt-1">D3.js • WebGL</p>
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center project-overlay opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="text-center px-6">
+            <p class="text-sm text-slate-200 mb-3">Real-time analytics with neon visualizations.</p>
+            <div class="flex gap-3 justify-center">
+              <a class="px-3 py-2 rounded-lg bg-gradient-to-r from-neon-blue to-neon-pink text-black font-semibold" href="#">Live</a>
+              <a class="px-3 py-2 rounded-lg glass border border-white/6" href="#">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="group relative rounded-2xl overflow-hidden glass p-0">
+        <div class="h-48 bg-gradient-to-tr from-slate-900 to-slate-800 flex items-center justify-center">
+          <div class="text-slate-300">Music player visual</div>
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold">Synthwave Music Player</h3>
+          <p class="text-xs text-slate-300 mt-1">Web Audio API • Canvas</p>
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center project-overlay opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="text-center px-6">
+            <p class="text-sm text-slate-200 mb-3">Retro-futuristic player with visualizers.</p>
+            <div class="flex gap-3 justify-center">
+              <a class="px-3 py-2 rounded-lg bg-gradient-to-r from-neon-blue to-neon-pink text-black font-semibold" href="#">Live</a>
+              <a class="px-3 py-2 rounded-lg glass border border-white/6" href="#">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SKILLS (cards) -->
+  <section id="skills" class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-display neon-text text-center mb-8">Skills</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-2xl text-center hover:scale-105 transition">
+        <i class="fab fa-html5 text-3xl mb-3 text-neon-pink"></i>
+        <h4 class="font-semibold">HTML5</h4>
+        <p class="text-sm text-slate-300 mt-2">Semantic markup & accessibility</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center hover:scale-105 transition">
+        <i class="fab fa-css3-alt text-3xl mb-3 text-neon-blue"></i>
+        <h4 class="font-semibold">CSS / Tailwind</h4>
+        <p class="text-sm text-slate-300 mt-2">Responsive & modern UI systems</p>
+      </div>
+      <div class="glass p-6 rounded-2xl text-center hover:scale-105 transition">
+        <i class="fab fa-js text-3xl mb-3 text-neon-green"></i>
+        <h4 class="font-semibold">JavaScript</h4>
+        <p class="text-sm text-slate-300 mt-2">ES6+, DOM, Async</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="max-w-4xl mx-auto px-6 py-20">
+    <h2 class="text-3xl font-display neon-text text-center mb-8">Get In Touch</h2>
+
+    <form id="contactForm" class="glass p-8 rounded-2xl grid grid-cols-1 gap-4" novalidate>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm text-slate-300">Name</label>
+          <input id="name" name="name" required class="mt-2 w-full rounded-lg px-3 py-2 bg-transparent border border-white/6 text-slate-100" placeholder="Your name" />
+          <p class="text-xs text-red-400 mt-1 hidden" id="nameError">Please enter your name</p>
+        </div>
+        <div>
+          <label class="text-sm text-slate-300">Email</label>
+          <input id="email" name="email" type="email" required class="mt-2 w-full rounded-lg px-3 py-2 bg-transparent border border-white/6 text-slate-100" placeholder="you@domain.com" />
+          <p class="text-xs text-red-400 mt-1 hidden" id="emailError">Please enter a valid email</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm text-slate-300">Message</label>
+        <textarea id="message" name="message" rows="5" required class="mt-2 w-full rounded-lg px-3 py-2 bg-transparent border border-white/6 text-slate-100" placeholder="How can I help?"></textarea>
+        <p class="text-xs text-red-400 mt-1 hidden" id="messageError">Please add a message</p>
+      </div>
+
+      <div class="flex items-center justify-between mt-2">
+        <button type="submit" class="px-5 py-2 bg-gradient-to-r from-neon-blue to-neon-pink text-black rounded-xl font-semibold">Send Message</button>
+        <div class="text-sm text-slate-400">Or email me at <a class="underline" href="mailto:contact@neondev.com">contact@neondev.com</a></div>
+      </div>
+
+      <p id="formSuccess" class="text-sm text-green-300 hidden">Message sent (demo mode) — this is a front-end demo.</p>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="max-w-6xl mx-auto px-6 py-12 text-center text-slate-400">
+    <div class="flex justify-center gap-4 mb-4">
+      <a class="glass w-10 h-10 rounded-xl inline-grid place-items-center" href="#"><i class="fab fa-github"></i></a>
+      <a class="glass w-10 h-10 rounded-xl inline-grid place-items-center" href="#"><i class="fab fa-linkedin"></i></a>
+      <a class="glass w-10 h-10 rounded-xl inline-grid place-items-center" href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="text-sm">© <span id="year"></span> Muhammad Muzammil • Built with Tailwind & JS</div>
+  </footer>
+
+  <!-- back to top -->
+  <button id="backToTop" class="glass hidden" title="Back to top">
+    <i class="fas fa-arrow-up text-slate-200"></i>
+  </button>
+
+  <!-- SCRIPT: Interactivity -->
+  <script>
+    /* -------------------------
+       Utilities & DOM helpers
+    ------------------------- */
+    const q = (s, el = document) => el.querySelector(s);
+    const qAll = (s, el = document) => Array.from(el.querySelectorAll(s));
+
+    /* -------------------------
+       Typing effect (hero)
+    ------------------------- */
+    const typingEl = q('#typingText');
+    const phrases = [
+      "Hi, I'm Muhammad Muzammil — Web Developer.",
+      "I build modern, responsive UI with Tailwind & JS.",
+      "I craft beautiful, usable interfaces with great UX."
+    ];
+    let tIdx = 0, cIdx = 0, deleting = false;
+    function tick() {
+      const current = phrases[tIdx % phrases.length];
+      if (!deleting) {
+        cIdx++;
+        typingEl.textContent = current.slice(0, cIdx);
+        if (cIdx === current.length) {
+          deleting = true;
+          setTimeout(tick, 1800);
+          return;
+        }
+      } else {
+        cIdx--;
+        typingEl.textContent = current.slice(0, cIdx);
+        if (cIdx === 0) {
+          deleting = false; tIdx++;
+        }
+      }
+      setTimeout(tick, deleting ? 40 : 90);
+    }
+    tick();
+
+    /* -------------------------
+       Cursor follower (smooth)
+    ------------------------- */
+    const cursor = q('#cursor');
+    let mouseX = -100, mouseY = -100;
+    let curX = -100, curY = -100;
+    const speed = 0.15; // lerp speed
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // enlarge cursor when hovering interactive elements
+    const interactiveSelectors = 'a, button, input, textarea, .group, .glass';
+    function checkHover() {
+      const hovered = document.querySelector(':hover');
+      // simple heuristic - if any hovered ancestor is interactive
+      let node = hovered;
+      let big = false;
+      while (node) {
+        if (!node.matches) break;
+        if (node.matches && node.matches(interactiveSelectors)) { big = true; break; }
+        node = node.parentElement;
+      }
+      if (big) cursor.classList.add('big'); else cursor.classList.remove('big');
+    }
+
+    function animateCursor() {
+      curX += (mouseX - curX) * speed;
+      curY += (mouseY - curY) * speed;
+      cursor.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
+      checkHover();
+      requestAnimationFrame(animateCursor);
+    }
+    requestAnimationFrame(animateCursor);
+
+    /* -------------------------
+       Skill bars animate on view
+    ------------------------- */
+    const skillBars = qAll('.skill-bar');
+    function animateSkills() {
+      skillBars.forEach(bar => {
+        const target = +bar.dataset.target;
+        if (bar.dataset.animated) return;
+        const rect = bar.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          bar.dataset.animated = '1';
+          let current = 0;
+          const elPct = bar.previousElementSibling?.querySelector ? bar.previousElementSibling.querySelector('span') : null;
+          const speed = Math.max(6, Math.floor(200 / (target / 10)));
+          const interval = setInterval(() => {
+            current += 1;
+            bar.style.width = current + '%';
+            if (elPct) elPct.textContent = current + '%';
+            if (current >= target) clearInterval(interval);
+          }, speed);
+        }
+      });
+    }
+    window.addEventListener('scroll', animateSkills);
+    window.addEventListener('load', animateSkills);
+
+    /* -------------------------
+       Scroll reveal for sections
+    ------------------------- */
+    const revealEls = qAll('section, .group, .glass');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('opacity-100', 'translate-y-0');
+          e.target.classList.remove('opacity-0', '-translate-y-6');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => {
+      el.classList.add('opacity-0', '-translate-y-6', 'transition-all', 'duration-700');
+      revealObserver.observe(el);
+    });
+
+    /* -------------------------
+       Projects hover is handled by CSS (group-hover)
+    ------------------------- */
+
+    /* -------------------------
+       Back to top + navbar effects
+    ------------------------- */
+    const backToTop = q('#backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 350) backToTop.classList.remove('hidden'); else backToTop.classList.add('hidden');
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* -------------------------
+       Contact form validation (front-end demo)
+    ------------------------- */
+    const form = q('#contactForm');
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      // simple validation
+      const name = q('#name').value.trim();
+      const email = q('#email').value.trim();
+      const message = q('#message').value.trim();
+
+      const nameError = q('#nameError'), emailError = q('#emailError'), messageError = q('#messageError'), success = q('#formSuccess');
+      let ok = true;
+
+      if (!name) { nameError.classList.remove('hidden'); ok = false; } else nameError.classList.add('hidden');
+      if (!/^\S+@\S+\.\S+$/.test(email)) { emailError.classList.remove('hidden'); ok = false; } else emailError.classList.add('hidden');
+      if (!message) { messageError.classList.remove('hidden'); ok = false; } else messageError.classList.add('hidden');
+
+      if (!ok) return;
+
+      // demo success (replace with actual send logic)
+      success.classList.remove('hidden');
+      setTimeout(() => {
+        success.classList.add('hidden');
+        form.reset();
+      }, 2500);
+    });
+
+    /* -------------------------
+       Set current year
+    ------------------------- */
+    q('#year').textContent = new Date().getFullYear();
+
+    /* -------------------------
+       Accessibility: reduce cursor for keyboard users
+    ------------------------- */
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') cursor.style.opacity = '0'; // hide when keyboard focusing
+    });
+    window.addEventListener('mousedown', () => { cursor.style.opacity = '1'; });
+
+    /* -------------------------
+       Small performance: pause animations when not visible
+    ------------------------- */
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // optional: reduce activity (not implemented heavy)
+      }
+    });
+  </script>
+</body>
+</html>

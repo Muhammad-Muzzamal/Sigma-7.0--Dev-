@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#B8860B',
+                        accent: '#8B0000',
+                        light: '#F8F9FA',
+                        dark: '#1A202C',
+                        neutral: '#2D3748'
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.7s ease-out',
+                        'slide-in-left': 'slideInLeft 0.5s ease-out',
+                        'slide-in-right': 'slideInRight 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.9)), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .campus-bg {
+            background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .programs-bg {
+            background: linear-gradient(rgba(184, 134, 11, 0.9), rgba(184, 134, 11, 0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .research-bg {
+            background: linear-gradient(rgba(139, 0, 0, 0.85), rgba(139, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #B8860B;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #B8860B;
+            font-family: 'Poppins', sans-serif;
+        }
+        .course-card {
+            transition: all 0.3s ease;
+        }
+        .course-card:hover .course-icon {
+            transform: scale(1.1);
+            color: #B8860B;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .page-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .page-title::after {
+            content: '';
+            position: absolute;
+            height: 3px;
+            width: 50%;
+            bottom: -10px;
+            left: 25%;
+            background: #B8860B;
+        }
+        .professor-card:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-item {
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-body bg-light text-neutral">
+    <!-- Navigation -->
+    <header class="bg-primary text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mr-3 shadow-lg">
+                    <span class="text-primary font-bold text-xl">UE</span>
+                </div>
+                <h1 class="text-2xl font-heading font-bold">University of Excellence</h1>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link font-semibold" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="about">About</a>
+                <a href="#" class="nav-link" data-page="academics">Academics</a>
+                <a href="#" class="nav-link" data-page="admissions">Admissions</a>
+                <a href="#" class="nav-link" data-page="campus">Campus Life</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
+            </nav>
+            
+            <button class="md:hidden text-xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-primary pt-2 pb-4 px-4" id="mobile-menu">
+            <div class="flex flex-col space-y-3">
+                <a href="#" class="nav-link font-semibold" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="about">About</a>
+                <a href="#" class="nav-link" data-page="academics">Academics</a>
+                <a href="#" class="nav-link" data-page="admissions">Admissions</a>
+                <a href="#" class="nav-link" data-page="campus">Campus Life</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero-bg text-white py-20 md:py-32">
+            <div class="container mx-auto px-4 text-center animate-on-scroll">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 animate-slide-up">Where Excellence Meets Opportunity</h2>
+                <p class="text-xl max-w-2xl mx-auto mb-8 animate-slide-up">Join our community of scholars and innovators dedicated to making a difference in the world through education and research.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up">
+                    <button class="bg-secondary hover:bg-yellow-700 px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 transform hover:-translate-y-1">Apply Now</button>
+                    <button class="bg-transparent border-2 border-white hover:bg-white hover:text-primary px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 transform hover:-translate-y-1">Explore Programs</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div class="animate-on-scroll">
+                        <div class="stat-number">95%</div>
+                        <p class="text-lg font-semibold">Graduate Employment</p>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <div class="stat-number">120+</div>
+                        <p class="text-lg font-semibold">Programs Offered</p>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <div class="stat-number">15:1</div>
+                        <p class="text-lg font-semibold">Student-Faculty Ratio</p>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <div class="stat-number">50+</div>
+                        <p class="text-lg font-semibold">Countries Represented</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Preview -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12 text-primary">Academic Programs</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover-lift animate-on-scroll">
+                        <div class="h-48 bg-gradient-to-r from-primary to-blue-800 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-heading font-bold mb-2">Undergraduate Programs</h3>
+                            <p class="text-gray-600 mb-4">Bachelor's degrees across diverse fields of study with hands-on learning opportunities.</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Explore Programs</a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover-lift animate-on-scroll">
+                        <div class="h-48 bg-gradient-to-r from-secondary to-yellow-800 flex items-center justify-center">
+                            <i class="fas fa-book text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-heading font-bold mb-2">Graduate Programs</h3>
+                            <p class="text-gray-600 mb-4">Master's and doctoral programs for advanced study and research opportunities.</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Explore Programs</a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover-lift animate-on-scroll">
+                        <div class="h-48 bg-gradient-to-r from-accent to-red-900 flex items-center justify-center">
+                            <i class="fas fa-globe text-white text-5xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-heading font-bold mb-2">Global Programs</h3>
+                            <p class="text-gray-600 mb-4">Study abroad and international exchange programs across six continents.</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Explore Programs</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12 animate-on-scroll">
+                    <button class="bg-primary hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 transform hover:-translate-y-1">View All Programs</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12 text-primary">Campus News & Events</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-light rounded-lg p-6 shadow-md hover-lift animate-on-scroll">
+                        <span class="text-secondary text-sm font-semibold">October 15, 2023</span>
+                        <h3 class="text-xl font-heading font-bold my-2">University Ranked Among Top 10 Nationally</h3>
+                        <p class="text-gray-600 mb-4">Our university has been recognized as one of the top 10 educational institutions in the country for the fifth consecutive year.</p>
+                        <a href="#" class="inline-block mt-2 text-primary font-semibold hover:underline">Read More</a>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg p-6 shadow-md hover-lift animate-on-scroll">
+                        <span class="text-secondary text-sm font-semibold">October 10, 2023</span>
+                        <h3 class="text-xl font-heading font-bold my-2">New Research Center Opening</h3>
+                        <p class="text-gray-600 mb-4">State-of-the-art research facility to open next month, focusing on sustainable technologies and innovation.</p>
+                        <a href="#" class="inline-block mt-2 text-primary font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-16 bg-primary text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-heading font-bold mb-6 animate-on-scroll">Begin Your Journey Today</h2>
+                <p class="text-xl max-w-2xl mx-auto mb-8 animate-on-scroll">Take the first step toward an exceptional education and a future full of possibilities.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-on-scroll">
+                    <button class="bg-secondary hover:bg-yellow-700 px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 transform hover:-translate-y-1">Request Information</button>
+                    <button class="bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 transform hover:-translate-y-1">Schedule a Visit</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12 text-primary page-title">About Our University</h2>
+                
+                <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
+                    <div class="md:w-1/2 animate-on-scroll">
+                        <div class="rounded-lg overflow-hidden shadow-lg">
+                            <div class="h-80 bg-gradient-to-r from-primary to-blue-800 flex items-center justify-center">
+                                <span class="text-white text-5xl font-heading">HERITAGE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 animate-on-scroll">
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-primary">Our History & Legacy</h3>
+                        <p class="text-gray-600 mb-4">Founded in 1950, University of Excellence has built a strong reputation for academic excellence, innovation, and community engagement. Our beautiful 200-acre campus has grown from a small college to a comprehensive university serving over 15,000 students.</p>
+                        <p class="text-gray-600">Throughout our history, we've remained committed to our founding principles: excellence in teaching, research that makes a difference, and service to our communities.</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col md:flex-row-reverse gap-8 items-center mb-16">
+                    <div class="md:w-1/2 animate-on-scroll">
+                        <div class="rounded-lg overflow-hidden shadow-lg">
+                            <div class="h-80 bg-gradient-to-r from-secondary to-yellow-800 flex items-center justify-center">
+                                <span class="text-white text-5xl font-heading">MISSION</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 animate-on-scroll">
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-primary">Our Mission & Values</h3>
+                        <p class="text-gray-600 mb-4">The University of Excellence is dedicated to the pursuit of knowledge, wisdom, and discovery. We consider the transmission and advancement of knowledge to be our primary mission.</p>
+                        <p class="text-gray-600 mb-4">We value:</p>
+                        <ul class="list-disc list-inside text-gray-600 ml-4">
+                            <li>Academic excellence and integrity</li>
+                            <li>Diversity of thought, culture, and background</li>
+                            <li>Innovation and creativity</li>
+                            <li>Service to society</li>
+                            <li>Collaboration and community</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-heading font-bold text-center mb-8 text-primary">University Leadership</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-light rounded-lg overflow-hidden shadow-md professor-card animate-on-scroll">
+                        <div class="h-64 bg-gray-200 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-primary to-blue-800 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-heading font-bold">Dr. Elizabeth Morgan</h4>
+                            <p class="text-secondary font-semibold">President</p>
+                            <p class="text-gray-600 mt-2">Leading the university since 2018, Dr. Morgan is a renowned scholar in economics.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg overflow-hidden shadow-md professor-card animate-on-scroll">
+                        <div class="h-64 bg-gray-200 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-secondary to-yellow-800 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-heading font-bold">Dr. Robert Chen</h4>
+                            <p class="text-secondary font-semibold">Provost</p>
+                            <p class="text-gray-600 mt-2">Dr. Chen oversees academic affairs and curriculum development across all faculties.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg overflow-hidden shadow-md professor-card animate-on-scroll">
+                        <div class="h-64 bg-gray-200 overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-accent to-red-900 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-heading font-bold">Dr. Sarah Williams</h4>
+                            <p class="text-secondary font-semibold">Vice President, Research</p>
+                            <p class="text-gray-600 mt-2">Dr. Williams leads the university's research initiatives and innovation partnerships.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Academics Page -->
+    <div id="academics" class="page">
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12 text-primary page-title">Academic Programs</h2>
+                
+                <div class="mb-16">
+                    <h3 class="text-2xl font-heading font-bold mb-8 text-primary text-center">Schools & Colleges</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-light rounded-lg p-6 text-center shadow-md hover-lift animate-on-scroll">
+                            <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-balance-scale text-primary text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold mb-2">Law School</h4>
+                            <p class="text-gray-600">JD, LLM, and SJD programs with nationally ranked clinics.</p>
+                        </div>
+                        
+                        <div class="bg-light rounded-lg p-6 text-center shadow-md hover-lift animate-on-scroll">
+                            <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-briefcase-medical text-primary text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold mb-2">Medical School</h4>
+                            <p class="text-gray-600">MD programs and biomedical research opportunities.</p>
+                        </div>
+                        
+                        <div class="bg-light rounded-lg p-6 text-center shadow-md hover-lift animate-on-scroll">
+                            <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-laptop-code text-primary text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold mb-2">Engineering</h4>
+                            <p class="text-gray-600">ABET-accredited programs in 9 engineering disciplines.</p>
+                        </div>
+                        
+                        <div class="bg-light rounded-lg p-6 text-center shadow-md hover-lift animate-on-scroll">
+                            <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-paint-brush text-primary text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-heading font-bold mb-2">Arts & Sciences</h4>
+                            <p class="text-gray-600">Programs in humanities, social sciences, and natural sciences.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-16">
+                    <h3 class="text-2xl font-heading font-bold mb-8 text-primary text-center">Featured Courses</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md course-card animate-on-scroll">
+                            <div class="h-48 bg-gradient-to-r from-primary to-blue-800 flex items-center justify-center">
+                                <i class="fas fa-brain text-white text-5xl course-icon transition-transform"></i>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-heading font-bold mb-2">Cognitive Neuroscience</h4>
+                                <p class="text-gray-600 mb-4">Explore the biological processes that underlie cognition with a focus on neural connections.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-secondary font-semibold">PSY 405</span>
+                                    <span class="text-sm text-gray-500">3 Credits</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md course-card animate-on-scroll">
+                            <div class="h-48 bg-gradient-to-r from-secondary to-yellow-800 flex items-center justify-center">
+                                <i class="fas fa-leaf text-white text-5xl course-icon transition-transform"></i>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-heading font-bold mb-2">Sustainable Energy Systems</h4>
+                                <p class="text-gray-600 mb-4">Examine renewable energy technologies and their integration into modern power systems.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-secondary font-semibold">ENG 350</span>
+                                    <span class="text-sm text-gray-500">4 Credits</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md course-card animate-on-scroll">
+                            <div class="h-48 bg-gradient-to-r from-accent to-red-900 flex items-center justify-center">
+                                <i class="fas fa-dna text-white text-5xl course-icon transition-transform"></i>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-xl font-heading font-bold mb-2">Genomics & Precision Medicine</h4>
+                                <p class="text-gray-600 mb-4">Study how genomic information is transforming disease prevention and treatment.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-secondary font-semibold">BIO 455</span>
+                                    <span class="text-sm text-gray-500">3 Credits</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <button class="bg-primary hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 transform hover:-translate-y-1">View Full Course Catalog</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Admissions Page -->
+    <div id="admissions" class="page">
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-heading font-bold text-center mb-12 text-primary page-title">Admissions</h2>
+                
+                <div class="flex flex-col md:flex-row gap-8 mb-16">
+                    <div class="md:w-1/2 animate-on-scroll">
+                        <h3 class="text-2xl font-heading font-bold mb-4 text-primary">Begin Your Journey</h3>
+                        <p class="text-gray-600 mb-4">Joining the University of Excellence means becoming part of a vibrant community of scholars, innovators, and leaders. Our admissions process is designed to identify students who will thrive in our rigorous academic environment and contribute to our campus community.</p>
+                        <p class="text-gray-600 mb-6">We consider each application holistically, looking beyond test scores and grades to understand your unique experiences, perspectives, and potential.</p>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="text-xl font-heading font-bold mb-2 text-primary">Application Deadlines</h4>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span class="font-semibold">Early Decision</span>
+                                    <span>November 1</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="font-semibold">Regular Decision</span>
+                                    <span>January 15</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="font-semibold">Transfer Students</span>
+                                    <span>March 1</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="font-semibold">Graduate Programs</span>
+                                    <span>Varies by program</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 animate-on-scroll">
+                        <div class="bg-light rounded-lg p-8 shadow-md">
+                            <h4 class="text-xl font-heading font-bold mb-6 text-primary text-center">Admissions Quick Facts</h4>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold">Acceptance Rate</span>
+                                        <span class="text-secondary font-bold">22%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-primary h-2.5 rounded-full" style="width: 22%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold">Average GPA</span>
+                                        <span class="text-secondary font-bold">3.8</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-primary h-2.5 rounded-full" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold">Financial Aid Recipients</span>
+                                        <span class="text-secondary font-bold">65%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-semibold">International Students</span>
+                                        <span class="text-secondary font-bold">18%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-primary h-2.5 rounded-full" style="width: 18%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-heading font-bold text-center mb-8 text-primary">Application Process</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+                    <div class="bg-light rounded-lg p-6 text-center hover-lift animate-on-scroll">
+                        <div class="w-16 h-16 mx-auto bg-primary rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">1</div>
+                        <h4 class="text-xl font-heading font-bold mb-2">Submit Application</h4>
+                        <p class="text-gray-600">Complete our online application with your personal and academic information.</p>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg p-6 text-center hover-lift animate-on-scroll">
+                        <div class="w-16 h-16 mx-auto bg-primary rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">2</div>
+                        <h4 class="text-xl font-heading font-bold mb-2">Submit Materials</h4>
+                        <p class="text-gray-600">Send transcripts, test scores, letters of recommendation, and other required documents.</p>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg p-6 text-center hover-lift animate-on-scroll">
+                        <div class="w-16 h-16 mx-auto bg-primary rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">3</div>
+                        <h4 class="text-xl font-heading font-bold mb-2">Interview</h4>
+                        <p class="text-gray-600">Some programs require an interview as part of the application process.</p>
+                    </div>
+                    
+                    <div class="bg-light rounded-lg p-6 text-center hover-lift animate-on-scroll">
+                        <div class="w-16 h-16 mx-auto bg-primary rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">4</div>
+                        <h4 class="text-xl font-heading font-bold mb-2">Receive Decision</h4>
+                        <p class="text-gray-600">Admissions decisions are released according to our notification timeline.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center animate-on-scroll">
+                    <button class="bg-primary hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold text-lg transition duration-300 transform hover:-translate-y-1 mr-4">Start

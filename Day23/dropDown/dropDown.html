@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Animated Website</title>
+    <!-- Link our CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- We load GSAP from a CDN (Content Delivery Network) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- We load the ScrollTrigger plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- The Hero Section - the first thing users see -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="animate-hero">Welcome to My World</h1>
+            <p class="animate-hero">This is a stunning hero section brought to life with GSAP.</p>
+            <a href="#" class="btn animate-hero">Get Started</a>
+        </div>
+    </section>
+
+    <!-- A simple section we will animate on scroll -->
+    <section class="section">
+        <h2>About Us</h2>
+        <p>This section will fade in as you scroll down. How cool is that?</p>
+    </section>
+
+    <!-- Another section to animate -->
+    <section class="section">
+        <h2>Our Services</h2>
+        <p>We offer amazing things that will animate into view.</p>
+    </section>
+
+    <!-- Link our own JavaScript file. It MUST be after the GSAP script tags. -->
+    <script src="script.js"></script>
+</body>
+</html>
