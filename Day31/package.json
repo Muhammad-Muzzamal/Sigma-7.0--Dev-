@@ -1,0 +1,15 @@
+{
+  "name": "day31",
+  "version": "1.0.0",
+  "description": "This is Practice Session",
+  "license": "ISC",
+  "author": "Muzzamal",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "figlet": "^1.8.2"
+  }
+}

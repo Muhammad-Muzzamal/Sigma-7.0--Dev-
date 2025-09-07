@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activity Random Number</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex justify-center items-center flex-col">
+    <h1 class="font-bold text-xl mb-10">Generate a random Number</h1>
+    <button
+      id="btn"
+      class="border-black rounded-full p-2 border-[2px] active:bg-gray-300 font-bold mb-10"
+    >
+      Generate Color
+    </button>
+    <div
+      id="container"
+      class="border-[1px] border-black h-[30vh] w-[50vw] text-center rounded"
+    >
+      This your new color
+    </div>
+    <script>
+      let btn = document.querySelector("#btn");
+      let container = document.querySelector("#container");
+
+      let random = (val) => {
+        return Math.random() * (val + 1);
+      };
+
+      btn.addEventListener("click", () => {
+        container.style.backgroundColor = `rgb(${random(255)},${random(
+          255
+        )}, ${random(255)} )`;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Listner</title>
+    <style>
+      .dark {
+        background-color: rgb(36, 34, 34);
+      }
+    </style>
+  </head>
+  <body>
+    <button id="toggle">Dark Mode</button>
+    <button id="btn">Click Me!</button>
+    <div id="box">Hover over me!</div>
+    <input type="text" placeholder="enter your name" id="nameInput" />
+    <p id="preview"></p>
+
+    <script>
+      let btn = document.querySelector("#btn");
+      btn.addEventListener("click", () => {
+        btn.innerText = "You double clicked me!";
+      });
+
+      let box = document.querySelector("#box");
+      box.style.height = "200px";
+      box.style.width = "200px";
+      box.style.backgroundColor = "gray";
+      box.addEventListener("mouseenter", () => {
+        box.style.backgroundColor = "green";
+      });
+      box.addEventListener("mouseleave", () => {
+        box.style.backgroundColor = "gray";
+      });
+
+      //   name input handle
+
+      let nameInput = document.querySelector("#nameInput");
+      let preview = document.querySelector("#preview");
+
+      let toggle = document.querySelector("#toggle");
+      let body = document.querySelector("body");
+      toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        if (body.classList.contains("dark")) {
+          toggle.innerText = "Light Mode"; // when dark mode is ON
+        } else {
+          toggle.innerText = "Dark Mode"; // when dark mode is OFF
+        }
+      });
+    </script>
+  </body>
+</html>
