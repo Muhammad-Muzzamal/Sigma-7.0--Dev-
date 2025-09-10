@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do app</title>
+    <style>
+      li {
+        margin: 5px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f2f2f2;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      .delete {
+        background: red;
+        color: white;
+        border: none;
+        padding: 3px 8px;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Todo App</h1>
+    <input type="text" placeholder="Enter your task" />
+    <button id="addBtn">Add Task</button>
+    <ul>
+      <li>Eat <button class="delete">Delete</button></li>
+      <li>Sleep <button class="delete">Delete</button></li>
+    </ul>
+
+    <script>
+      let input = document.querySelector("input");
+      let button = document.querySelector("#addBtn");
+      let ul = document.querySelector("ul");
+
+      // Add task
+      button.addEventListener("click", () => {
+        if (input.value.trim() === "") {
+          return;
+        }
+
+        let li = document.createElement("li");
+        li.innerText = input.value;
+
+        // Create delete button
+        let delBtn = document.createElement("button");
+        delBtn.innerText = "Delete";
+        delBtn.classList.add("delete");
+
+        // Delete this task when clicked
+        delBtn.addEventListener("click", () => {
+          li.remove();
+        });
+
+        li.appendChild(delBtn);
+        ul.appendChild(li);
+        input.value = "";
+      });
+
+      // Make existing "Eat" and "Sleep" deletable too
+      document.querySelectorAll(".delete").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.target.parentElement.remove();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Heading</title>
+  </head>
+  <body>
+    <script>
+      let body = document.querySelector("body");
+      let heading = document.createElement("h2");
+      //   heading.innerText = "Muhammad Muzzamal";
+      body.appendChild(heading);
+
+      let input = document.createElement("input");
+      input.placeholder = "Enter Name";
+      body.appendChild(input);
+
+      input.addEventListener("input", (event) => {
+        const filteredValue = input.value.replace(/[^a-zA-Z ]/g, " ");
+        input.value = filteredValue;
+        heading.innerText = filteredValue;
+      });
+    </script>
+  </body>
+</html>

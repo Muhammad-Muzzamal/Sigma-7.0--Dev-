@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling</title>
+    <style>
+      .box1 {
+        background-color: red;
+        height: 300px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box2 {
+        background-color: green;
+        height: 200px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box3 {
+        background-color: blue;
+        height: 100px;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">
+      <div class="box2">
+        <div class="box3"></div>
+      </div>
+    </div>
+
+    <script>
+      let outerBox = document.querySelector(".box1");
+      let middleBox = document.querySelector(".box2");
+      let innerBox = document.querySelector(".box3");
+
+      outerBox.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Outer box Clickes");
+      });
+
+      middleBox.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Middle box Clickes");
+      });
+
+      innerBox.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Inner box Clickes");
+      });
+    </script>
+  </body>
+</html>

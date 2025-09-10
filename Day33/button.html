@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button</title>
+    <style>
+      button {
+        height: 35px;
+        width: 100px;
+        border-radius: 10px;
+        border: none;
+        background-color: gray;
+        color: white;
+      }
+      button:active {
+        background-color: rgba(128, 128, 128, 0.822);
+      }
+    </style>
+  </head>
+  <body>
+    <button>Click me</button>
+
+    <script>
+        let button = document.querySelector("button");
+        button.addEventListener("click", ()=> {
+            button.style.backgroundColor = "green";
+        })
+    </script>
+  </body>
+</html>
