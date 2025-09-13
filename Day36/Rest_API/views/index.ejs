@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Posts</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <h1>Quora Posts</h1>
+    &nbsp;
+    <a href="/posts/new">
+      <button>Create New Post</button>
+    </a>
+
+    <% posts.forEach(post => { %>
+    <div class="post">
+      <h3 class="post-name"><%= post.name %></h3>
+      <p class="post-content"><%= post.content %></p>
+    </div>
+    <% }) %>
+  </body>
+</html>
