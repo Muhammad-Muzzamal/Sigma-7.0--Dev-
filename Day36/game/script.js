@@ -40,7 +40,9 @@ const levelUp = () => {
 function btnPress() {
   let btn = this;
   userFlash(btn)
-  console.log(btn);
+  let userColor = btn.getAttribute("id");
+  console.log(userColor);
+  userSeq.push(userColor)
 };
 
 let allBtn = document.querySelectorAll(".body-box");

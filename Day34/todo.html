@@ -4,16 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>Todo List</h1>
-    <input type="text" placeholder="Enter Your task" />
-    <button id="submit">Add Task</button>
-    <div id="list">
-      <div>
+    <div id="input-area">
+        <input type="text" placeholder="Enter Your task" id="input" />
+        <button id="submit">Add Task</button>
+    </div>
+    <div id="list-box">
+      <div class="list-item">
         Hello World
-        <button>Delete</button>
-        <button>Edit</button>
+        <div class="btn">
+          <button class="deleteBtn">Delete</button>
+          <button class="editBtn">Edit</button>
+        </div>
       </div>
-      <div>
-        Hello World
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
