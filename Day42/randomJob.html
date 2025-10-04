@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Jobs</title>
+    <style>
+      body {
+        background: rgb(205, 203, 203);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+      }
+      button {
+        padding: 10px 10px;
+        border-radius: 10px;
+        border: 2px solid black;
+      }
+      h1 {
+        transition: all;
+        transition-duration: 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Job</h1>
+    <h3>0</h3>
+    <button>Ge Random Job</button>
+    <script>
+      let h1 = document.querySelector("h1");
+      let button = document.querySelector("button");
+      let h3 = document.querySelector("h3");
+
+      const jobs = [
+        "Software Engineer",
+        "Web Developer",
+        "Data Scientist",
+        "UI/UX Designer",
+        "Graphic Designer",
+        "Cybersecurity Analyst",
+        "Game Developer",
+        "Project Manager",
+        "DevOps Engineer",
+        "AI Researcher",
+        "Cloud Architect",
+        "Database Administrator",
+        "Mobile App Developer",
+        "Digital Marketer",
+        "Network Engineer",
+      ];
+      let clickCount = 0;
+
+      button.addEventListener("click", () => {
+        if (clickCount < 10) {
+          let index = Math.floor(Math.random() * jobs.length);
+          console.log(`${index} : ${jobs[index]}`);
+          h1.innerText = jobs[index];
+
+          clickCount++;
+          h3.innerText = clickCount;
+        } else {
+          h1.innerText = "You dont can click more";
+        }
+      });
+    </script>
+  </body>
+</html>

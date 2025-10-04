@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Dog Generator</title>
+    <style>
+      body {
+        text-align: center;
+        margin-top: 50px;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      img {
+        width: 300px;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 10px;
+        display: none; /* hide initially */
+      }
+      #loader {
+        font-size: 18px;
+        color: #555;
+        margin-top: 20px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="generateImage()">Generate Dog Image</button>
+    <br />
+    <div id="loader">⏳ Fetching a cute dog...</div>
+    <img src="" alt="Dog Image" />
+
+    <script>
+      const image = document.querySelector("img");
+      const loader = document.querySelector("#loader");
+
+      async function generateImage() {
+        try {
+          // show loader, hide image
+          loader.style.display = "block";
+          image.style.display = "none";
+
+          const response = await fetch("https://dog.ceo/api/breeds/image/random");
+          const data = await response.json();
+
+          // update image src
+          image.setAttribute("src", data.message);
+
+          // wait for image to load
+          image.onload = () => {
+            loader.style.display = "none";
+            image.style.display = "block";
+          };
+        } catch (e) {
+          loader.textContent = "⚠️ Failed to load image. Try again!";
+          console.log(`Error: ${e}`);
+        }
+      }
+
+      // load first image automatically
+      generateImage();
+    </script>
+  </body>
+</html>

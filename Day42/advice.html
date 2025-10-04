@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advice Generator</title>
+  </head>
+  <body>
+    <h1></h1>
+    <button onclick="getAdvice()">New Advice</button>
+    <script>
+      let h1 = document.querySelector("h1");
+      let button = document.querySelector("button");
+
+      async function getAdvice() {
+        try {
+          const response = await fetch("https://api.adviceslip.com/advice");
+          const data = await response.json();
+
+          h1.textContent = data.slip.advice;
+        } catch (e) {
+          h1.textContent = "Oops! Nework Issue";
+        }
+      }
+      getAdvice();
+    </script>
+  </body>
+</html>

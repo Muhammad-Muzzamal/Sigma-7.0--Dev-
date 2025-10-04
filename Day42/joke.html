@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>joke Generator</title>
+  </head>
+  <body>
+    <h1>Random Joke Generator</h1>
+    <p id="setup"></p>
+    <p id="punchline"></p>
+    <button onclick="getjoke()">New Joke</button>
+
+    <script>
+      let setup = document.querySelector("#setup");
+      let punchline = document.querySelector("#punchline");
+
+      async function getjoke() {
+        try {
+          const response = await fetch(
+            "https://official-joke-api.appspot.com/random_joke"
+          );
+          const data = await response.json();
+
+          setup.textContent = data.setup;
+          punchline.textContent = data.punchline;
+        } catch (err) {
+          console.log("Error :", err);
+          setup.textContent = "Oops! Something went wrong";
+          punchline.textContent = "";
+        }
+      }
+      getjoke();
+    </script>
+  </body>
+</html>
