@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+    <style>
+      #info div {
+        border: 2px solid black;
+        width: 300px;
+        padding: 10px;
+        margin: 20px;
+        text-align: center;
+      }
+      #info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #box {
+        width: 100px;
+        height: 100px;
+        background: tomato;
+        transition: transform 0.5s ease;
+      }
+      .move {
+        transform: translateX(200px);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <button id="btn1">Animate</button>
+
+    <input type="text" name="name" id="name" placeholder="Enter your name" />
+    <input type="text" name="age" id="age" placeholder="Enter your age" />
+    <input type="text" name="major" id="major" placeholder="Enter your major" />
+    <button id="btn">Add User</button>
+    <div id="info"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
