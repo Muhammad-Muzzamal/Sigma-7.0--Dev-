@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+  </head>
+  <body>
+    <h1>Registeration Form</h1>
+    <% if (alert) { %>
+    <p><%=alert%></p>
+    <%} %>
+    <form action="/register" method="post">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" />
+      <br />
+      <br />
+      <label for="email">Email</label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="Enter Your email"
+      />
+      <br /><br />
+      <button type="submit">Save</button>
+    </form>
+    <h1>Register Data</h1>
+    <% if (registerData.length === 0) { %>
+    <p>No Data</p>
+    <% } else { %> <% for(let el of registerData) {%>
+    <div style="border: 2px solid black; display: inline-block">
+      <h1><%= el.name %></h1>
+      <p><%= el.email %></p>
+    </div>
+    <% }%> <% } %>
+  </body>
+</html>
