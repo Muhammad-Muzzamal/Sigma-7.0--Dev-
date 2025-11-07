@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="text-align: center; margin-top: 50px">
+      <h2>🕵️ Caesar Cipher</h2>
+      <textarea
+        id="inputText"
+        rows="4"
+        cols="50"
+        placeholder="Enter your text here..."
+      ></textarea
+      ><br /><br />
+      <input
+        type="number"
+        id="shiftValue"
+        placeholder="Shift Value (e.g. 3)"
+      /><br /><br />
+      <button id="encryptBtn">Encrypt</button>
+      <button id="decryptBtn">Decrypt</button><br /><br />
+      <textarea
+        id="outputText"
+        rows="4"
+        cols="50"
+        placeholder="Result will appear here..."
+      ></textarea>
+    </div>
+
+    <script>
+      // ===== Caesar Cipher Logic =====
+
+      // Function to encrypt text
+      function caesarEncrypt(text, shift) {
+        // Ensure shift is between 0–25
+        shift = shift % 26;
+        let result = "";
+
+        for (let i = 0; i < text.length; i++) {
+          let char = text[i];
+
+          if (char.match(/[a-z]/)) {
+            // lowercase
+            let code = char.charCodeAt(0);
+            let shifted = ((code - 97 + shift) % 26) + 97;
+            result += String.fromCharCode(shifted);
+          } else if (char.match(/[A-Z]/)) {
+            // uppercase
+            let code = char.charCodeAt(0);
+            let shifted = ((code - 65 + shift) % 26) + 65;
+            result += String.fromCharCode(shifted);
+          } else {
+            // Non-alphabetic characters remain the same
+            result += char;
+          }
+        }
+        return result;
+      }
+
+      // Function to decrypt text
+      function caesarDecrypt(text, shift) {
+        // Just encrypt with a negative shift
+        return caesarEncrypt(text, 26 - (shift % 26));
+      }
+
+      // ===== Hook up with HTML (if you want interactive GUI) =====
+      document
+        .getElementById("encryptBtn")
+        .addEventListener("click", function () {
+          const text = document.getElementById("inputText").value;
+          const shift = parseInt(document.getElementById("shiftValue").value);
+          document.getElementById("outputText").value = caesarEncrypt(
+            text,
+            shift
+          );
+        });
+
+      document
+        .getElementById("decryptBtn")
+        .addEventListener("click", function () {
+          const text = document.getElementById("inputText").value;
+          const shift = parseInt(document.getElementById("shiftValue").value);
+          document.getElementById("outputText").value = caesarDecrypt(
+            text,
+            shift
+          );
+        });
+    </script>
+  </body>
+</html>

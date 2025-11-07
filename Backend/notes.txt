@@ -1,0 +1,4 @@
+use content of another file 
+==> using require keyword 
+
+module.export ==>  a object

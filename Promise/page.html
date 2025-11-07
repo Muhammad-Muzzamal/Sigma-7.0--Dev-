@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub</title>
+    <style>
+        #first{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+        }
+        .info{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        img:hover{
+            transform:scale(1.1);
+            transition-duration: 0.2s;
+        }
+        .outer{
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="first" style="display: flex; gap:20px; flex-wrap:wrap;"></div>
+    <script>
+        let parent = document.querySelector('#first');
+        fetch("https://api.github.com/users")
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(element => {
+                let dataUnit = `<div class="outer">
+                    <div class="info">
+                    <h1 class="name" style="color:red;">${element.login.toUpperCase()}<h1/>
+                    <p> Type : ${element.type} </p>
+                    <a href="${element.html_url}">Profile Link</a>
+                    </div>
+                    <img src="${element.avatar_url}" >
+                    </div>`
+                parent.innerHTML += dataUnit;
+            });
+        })
+    </script>
+</body>
+</html>

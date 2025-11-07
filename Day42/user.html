@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random User Generator</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+        background: #f1f5f9;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #111827;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background: white;
+        width: 320px;
+        margin: 0 auto;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        display: none;
+        transition: opacity 0.4s ease;
+      }
+
+      img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        object-fit: cover;
+      }
+
+      #loader {
+        display: none;
+        font-size: 18px;
+        color: #4b5563;
+        margin: 30px 0;
+      }
+
+      button {
+        margin-top: 20px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      button:hover {
+        background: #1e40af;
+      }
+
+      .info {
+        text-align: left;
+        margin-top: 10px;
+        color: #374151;
+        line-height: 1.6;
+      }
+
+      strong {
+        color: #111827;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random User Generator</h1>
+
+    <div id="loader">⏳ Fetching user details...</div>
+
+    <div class="card" id="user-card">
+      <img src="" alt="User Image" id="user-img" />
+      <h2 id="user-name"></h2>
+      <div class="info">
+        <p><strong>Gender:</strong> <span id="user-gender"></span></p>
+        <p><strong>Age:</strong> <span id="user-age"></span></p>
+        <p><strong>Email:</strong> <span id="user-email"></span></p>
+        <p><strong>Phone:</strong> <span id="user-phone"></span></p>
+        <p><strong>Location:</strong> <span id="user-location"></span></p>
+      </div>
+    </div>
+
+    <button onclick="getUser()">Generate New User</button>
+
+    <script>
+      const loader = document.querySelector("#loader");
+      const card = document.querySelector("#user-card");
+      const img = document.querySelector("#user-img");
+
+      const userName = document.querySelector("#user-name");
+      const userGender = document.querySelector("#user-gender");
+      const userAge = document.querySelector("#user-age");
+      const userEmail = document.querySelector("#user-email");
+      const userPhone = document.querySelector("#user-phone");
+      const userLocation = document.querySelector("#user-location");
+
+      async function getUser() {
+        try {
+          loader.style.display = "block";
+          card.style.display = "none";
+
+          const response = await fetch("https://randomuser.me/api/");
+          const data = await response.json();
+          const user = data.results[0];
+
+          userName.textContent = `${user.name.title} ${user.name.first} ${user.name.last}`;
+          userGender.textContent = user.gender;
+          userAge.textContent = user.dob.age;
+          userEmail.textContent = user.email;
+          userPhone.textContent = user.phone;
+          userLocation.textContent = `${user.location.city}, ${user.location.country}`;
+
+          img.onload = () => {
+            loader.style.display = "none";
+            card.style.display = "block";
+            card.style.opacity = "1";
+          };
+          img.src = user.picture.large;
+        } catch (error) {
+          loader.textContent = "Failed to load user. Please try again!";
+          console.error("Error:", error);
+        }
+      }
+
+      getUser();
+    </script>
+  </body>
+</html>
