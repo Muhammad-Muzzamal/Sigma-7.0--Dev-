@@ -11,3 +11,6 @@ VALUES ("Muhammad Muzzamal", 110837);
 DROP TABLE `user`;
 
 SELECT * FROM user;
+
+SELECT COUNT(*) AS "total_users" FROM user;
+
