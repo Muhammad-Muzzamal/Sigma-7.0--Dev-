@@ -1,7 +1,7 @@
 const { faker } = require("@faker-js/faker");
 const mysql = require("mysql2");
 const express = require("express");
-const path = require('path');
+const path = require("path");
 const app = express();
 app.use(express.json());
 app.set("view engine", "ejs");
@@ -36,6 +36,25 @@ app.get("/", (req, res) => {
     });
   }
 });
+
+app.get("/users", (req, res) => {
+  let q = `SELECT * FROM user`;
+  connection.query(q, (err, result) => {
+    try {
+      if (err) {
+        throw err;
+      }
+      let allUsers = result;
+      console.log(allUsers);
+      res.render("allUsers", { allUsers });
+    } catch (err) {
+      console.log("Some Error in Database");
+      res.send(err);
+    }
+  });
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`App is listening on http://localhost:${PORT}`);

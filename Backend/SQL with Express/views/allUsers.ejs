@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Users</title>
+    <style>
+      table {
+        border: 2px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      tr,
+      td {
+        border: 2px solid black;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>All Users</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Roll no.</th>
+        <th>Action</th>
+      </tr>
+      <% allUsers.forEach(user => { %>
+      <tr>
+        <td>ِ<%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.roll_no %></td>
+        <td>
+          <button>Edit</button>
+          <button>Delete</button>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

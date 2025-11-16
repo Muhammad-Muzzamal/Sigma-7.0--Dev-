@@ -14,3 +14,5 @@ SELECT * FROM user;
 
 SELECT COUNT(*) AS "total_users" FROM user;
 
+DELETE FROM user where id > 50;
+
